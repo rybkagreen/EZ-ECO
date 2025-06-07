@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700&display=swap');
+
+/* Контейнер для кнопки */
+.modern-btn-container {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+}
+
+.modern-btn-container.small {
+  width: 120px;
+  height: 40px;
+}
+
+.modern-btn-container.medium {
+  width: 180px;
+  height: 60px;
+}
+
+.modern-btn-container.large {
+  width: 220px;
+  height: 70px;
+}
+
+/* Основная кнопка с улучшенной анимацией */
+.modern-btn {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #91C9FF;
+  outline: none;
+  position: relative;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  color: var(--primary-color, #3b82f6);
+  border-radius: 8px;
+  transition: 1s ease-in-out;
+  overflow: hidden;
+}
+
+.modern-btn:hover {
+  color: #fff;
+  background: #5CA4EA;
+  border-color: #5CA4EA;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(92, 164, 234, 0.3);
+}
+
+/* SVG анимация границы */
+.modern-btn svg.border {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #91C9FF;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+  pointer-events: none;
+}
+
+.modern-btn:hover svg.border {
+  stroke-dasharray: 480;
+  stroke-dashoffset: 0;
+  stroke: #fff;
+}
+
+.modern-btn svg .bg-line {
+  stroke: #91C9FF;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.modern-btn svg .hl-line {
+  stroke: #ffffff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+  opacity: 0;
+}
+
+/* Текст кнопки */
+.modern-btn span {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Размеры текста */
+.modern-btn.small span {
+  font-size: 12px;
+}
+
+.modern-btn.medium span {
+  font-size: 16px;
+}
+
+.modern-btn.large span {
+  font-size: 18px;
+}
+
+/* Типы кнопок */
+.modern-btn.primary {
+  background: linear-gradient(135deg, rgba(91, 164, 234, 0.2) 0%, rgba(79, 149, 218, 0.3) 100%);
+}
+
+.modern-btn.secondary {
+  background: linear-gradient(135deg, rgba(66, 165, 245, 0.15) 0%, rgba(25, 118, 210, 0.25) 100%);
+}
+
+.modern-btn.outline {
+  background: transparent;
+}
+
+.modern-btn.outline svg .bg-line {
+  stroke: #42a5f5;
+}
+
+/* Hover эффекты */
+.modern-btn:hover {
+  background: linear-gradient(135deg, #5CA4EA 0%, #4F95DA 100%);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(91, 164, 234, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.modern-btn:hover svg .bg-line {
+  stroke-dashoffset: -480;
+  stroke: #91C9FF;
+}
+
+.modern-btn:hover svg .hl-line {
+  stroke-dashoffset: -480;
+  opacity: 1;
+}
+
+.modern-btn:hover span {
+  color: #ffffff;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+/* Active состояние */
+.modern-btn:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 4px 12px rgba(91, 164, 234, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* Disabled состояние */
+.modern-btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background: rgba(91, 164, 234, 0.1);
+}
+
+.modern-btn.disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(91, 164, 234, 0.1);
+}
+
+.modern-btn.disabled svg .bg-line {
+  stroke: #666;
+}
+
+.modern-btn.disabled span {
+  color: #999;
+  text-shadow: none;
+}
+
+/* Адаптивные размеры SVG */
+.modern-btn.small svg {
+  width: 120px;
+  height: 40px;
+}
+
+.modern-btn.small svg polyline {
+  points: "119,1 119,39 1,39 1,1 119,1";
+}
+
+.modern-btn.large svg {
+  width: 220px;
+  height: 70px;
+}
+
+.modern-btn.large svg polyline {
+  points: "219,1 219,69 1,69 1,1 219,1";
+}
+
+/* Анимация появления */
+@keyframes button-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modern-btn-container {
+  animation: button-appear 0.6s cubic-bezier(0.23, 1, 0.320, 1) forwards;
+}
+
+/* Пульсация для важных кнопок */
+.modern-btn.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(91, 164, 234, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(91, 164, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(91, 164, 234, 0);
+  }
+}
+
+/* Pulse animation для важных кнопок */
+.modern-btn-container.pulse-animation {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 173, 239, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 173, 239, 0.6), 0 0 30px rgba(0, 173, 239, 0.4);
+  }
+}

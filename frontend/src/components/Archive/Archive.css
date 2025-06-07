@@ -1,0 +1,610 @@
+
+/* ========== ДИЗАЙН-СИСТЕМА v2.0 - АРХИВ ========== */
+
+.archive-main {
+  background: var(--primary-white);
+  min-height: 100vh;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ========== ЗАГОЛОВОК АРХИВА ========== */
+
+.archive-header {
+  background: linear-gradient(135deg, var(--primary-white) 0%, #F8FCFF 100%);
+  border-bottom: 2px solid var(--accent-blue);
+  padding: 24px 32px;
+  box-shadow: 0 4px 12px rgba(0, 173, 239, 0.1);
+}
+
+.archive-title-section {
+  margin-bottom: 24px;
+}
+
+.archive-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+
+.archive-icon {
+  font-size: 2.2rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.archive-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+  text-align: left;
+}
+
+/* ========== НАВИГАЦИЯ АРХИВА ========== */
+
+.archive-navigation {
+  display: flex;
+  gap: 4px;
+  padding: 0;
+  border-radius: 0;
+  background: var(--primary-white);
+  border: 2px solid var(--accent-blue);
+  overflow: hidden;
+}
+
+.archive-nav-item {
+  background: var(--primary-white);
+  border: none;
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent-blue);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  text-align: center;
+  border-radius: 0;
+  flex: 1;
+  min-width: 120px;
+}
+
+.archive-nav-item:hover {
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0F4FF 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 173, 239, 0.15);
+}
+
+.archive-nav-item.active {
+  background: var(--gradient-accent);
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 173, 239, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.archive-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ========== КОНТЕНТ АРХИВА ========== */
+
+.archive-content {
+  padding: 32px;
+  background: var(--primary-white);
+}
+
+/* ========== КАРТОЧКИ АРХИВА ========== */
+
+.archive-card {
+  background: var(--primary-white);
+  border: 2px solid #E5F3FF;
+  border-radius: 0;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 173, 239, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.archive-card:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 8px 24px rgba(0, 173, 239, 0.15);
+  transform: translateY(-2px);
+}
+
+.archive-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.archive-card:hover::before {
+  transform: scaleX(1);
+}
+
+.archive-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.archive-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  margin: 0;
+  text-align: left;
+}
+
+.archive-card-badge {
+  background: var(--gradient-accent);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.archive-card-content {
+  color: #666;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* ========== КНОПКИ АРХИВА ========== */
+
+.archive-btn {
+  background: var(--primary-white);
+  border: 2px solid var(--accent-blue);
+  color: var(--accent-blue);
+  padding: 12px 24px;
+  border-radius: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-width: 140px;
+}
+
+.archive-btn:hover {
+  background: var(--gradient-accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 173, 239, 0.25);
+}
+
+.archive-btn.primary {
+  background: var(--gradient-accent);
+  color: white;
+  border-color: var(--accent-blue);
+}
+
+.archive-btn.primary:hover {
+  background: var(--accent-blue-dark);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 173, 239, 0.3);
+}
+
+.archive-btn.danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.archive-btn.danger:hover {
+  background: #dc3545;
+  color: white;
+}
+
+/* ========== ПОЛЯ ВВОДА АРХИВА ========== */
+
+.archive-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #E5F3FF;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background: var(--primary-white);
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.archive-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(0, 173, 239, 0.1);
+}
+
+.archive-input::placeholder {
+  color: #999;
+  text-align: left;
+}
+
+/* ========== ПОИСК АРХИВА ========== */
+
+.archive-search-container {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.archive-search-input {
+  width: 100%;
+  padding: 16px 20px 16px 52px;
+  border: 2px solid var(--accent-blue);
+  border-radius: 0;
+  font-size: 1.1rem;
+  background: var(--primary-white);
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 173, 239, 0.1);
+  transition: all 0.3s ease;
+}
+
+.archive-search-input:focus {
+  outline: none;
+  box-shadow: 0 6px 20px rgba(0, 173, 239, 0.2);
+  transform: translateY(-1px);
+}
+
+.archive-search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-blue);
+  font-size: 1.2rem;
+}
+
+/* ========== СТАТИСТИЧЕСКИЕ БЛОКИ ========== */
+
+.archive-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.archive-stat-card {
+  background: var(--primary-white);
+  border: 2px solid #E5F3FF;
+  border-radius: 0;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.archive-stat-card:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 173, 239, 0.15);
+}
+
+.archive-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.archive-stat-card:hover::before {
+  transform: scaleX(1);
+}
+
+.archive-stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin: 0 0 8px 0;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.archive-stat-label {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ========== ТАБЛИЦЫ АРХИВА ========== */
+
+.archive-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--primary-white);
+  border: 2px solid #E5F3FF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 173, 239, 0.08);
+}
+
+.archive-table th {
+  background: var(--gradient-accent);
+  color: white;
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.archive-table td {
+  padding: 16px;
+  border-bottom: 1px solid #E5F3FF;
+  color: #333;
+  text-align: left;
+}
+
+.archive-table tr:hover {
+  background: #F8FCFF;
+}
+
+.archive-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ========== ПРОГРЕСС-БАРЫ ========== */
+
+.archive-progress {
+  width: 100%;
+  height: 8px;
+  background: #E5F3FF;
+  border-radius: 0;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.archive-progress-bar {
+  height: 100%;
+  background: var(--gradient-accent);
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.archive-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ========== МОДАЛЬНЫЕ ОКНА ========== */
+
+.archive-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 173, 239, 0.1);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.archive-modal {
+  background: var(--primary-white);
+  border: 2px solid var(--accent-blue);
+  border-radius: 0;
+  padding: 32px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 173, 239, 0.2);
+  animation: modalSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideIn {
+  from { 
+    transform: translateY(-20px) scale(0.95);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.archive-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #E5F3FF;
+}
+
+.archive-modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  margin: 0;
+  text-align: left;
+}
+
+.archive-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.archive-modal-close:hover {
+  color: var(--accent-blue);
+  transform: scale(1.1);
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+
+@media (max-width: 768px) {
+  .archive-header {
+    padding: 16px;
+  }
+  
+  .archive-title {
+    font-size: 2rem;
+  }
+  
+  .archive-navigation {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .archive-nav-item {
+    padding: 12px 16px;
+    text-align: center;
+  }
+  
+  .archive-content {
+    padding: 16px;
+  }
+  
+  .archive-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .archive-modal {
+    padding: 24px;
+    width: 95%;
+  }
+}
+
+/* ========== АНИМАЦИИ ЗАГРУЗКИ ========== */
+
+.archive-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: var(--accent-blue);
+}
+
+.archive-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #E5F3FF;
+  border-top: 4px solid var(--accent-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========== УВЕДОМЛЕНИЯ ========== */
+
+.archive-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--primary-white);
+  border: 2px solid var(--accent-blue);
+  border-radius: 0;
+  padding: 16px 20px;
+  box-shadow: 0 8px 24px rgba(0, 173, 239, 0.2);
+  z-index: 1001;
+  animation: notificationSlideIn 0.3s ease;
+  max-width: 400px;
+}
+
+@keyframes notificationSlideIn {
+  from { 
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to { 
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.archive-notification.success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.archive-notification.error {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.archive-notification.warning {
+  border-color: #ffc107;
+  color: #856404;
+}

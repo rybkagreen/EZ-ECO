@@ -1,0 +1,169 @@
+/* CodeChan - Милый котик программист */
+
+.code-chan-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.code-chan-container:hover {
+    transform: scale(1.05);
+}
+
+.code-chan-image {
+    width: 128px;
+    height: 128px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.code-chan-image:hover {
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+    transform: translateY(-2px);
+}
+
+.speech-bubble {
+    position: relative;
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    max-width: 200px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--background-card);
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 9px solid var(--border-color);
+    z-index: -1;
+}
+
+.interaction-sparkles {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.2rem;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Анимации настроений */
+.code-chan-container.happy .code-chan-image {
+    animation: bounce 2s infinite;
+}
+
+.code-chan-container.thinking .code-chan-image {
+    animation: wiggle 3s infinite;
+}
+
+.code-chan-container.coding .code-chan-image {
+    animation: pulse 1.5s infinite;
+}
+
+.code-chan-container.excited .code-chan-image {
+    animation: dance 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-3deg);
+    }
+    75% {
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes dance {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px) rotate(-5deg);
+    }
+    75% {
+        transform: translateX(5px) rotate(5deg);
+    }
+}
+
+/* Темная тема */
+[data-theme="dark"] .speech-bubble {
+    background: rgba(45, 55, 72, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .speech-bubble::before {
+    border-top-color: rgba(45, 55, 72, 0.95);
+}
+
+[data-theme="dark"] .speech-bubble::after {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .code-chan-image {
+        width: 96px;
+        height: 96px;
+    }
+    
+    .speech-bubble {
+        max-width: 150px;
+        font-size: 0.7rem;
+        padding: 0.5rem 0.75rem;
+    }
+}

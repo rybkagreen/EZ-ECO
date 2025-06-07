@@ -1,0 +1,124 @@
+/* Анимации для Code Chan */
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes waving {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes blinking {
+    0% { opacity: 1; }
+    90% { opacity: 1; }
+    95% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Стили для Code Chan */
+#code-chan-container {
+    animation: floating 3s ease-in-out infinite;
+}
+
+.code-chan-wave {
+    animation: waving 2s ease-in-out infinite;
+}
+
+.code-chan-blink {
+    animation: blinking 4s infinite;
+}
+
+/* Плавные переходы для темной темы */
+.dark-mode-transition {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Кастомные скроллбары */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: theme('colors.gray.100');
+    border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: theme('colors.gray.800');
+}
+
+::-webkit-scrollbar-thumb {
+    background: theme('colors.blue.400');
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.blue.500');
+}
+
+/* Анимации для уведомлений */
+@keyframes slideIn {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.notification-enter {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Анимации для drag-and-drop */
+.dragging {
+    opacity: 0.5;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.drop-target {
+    border: 2px dashed theme('colors.blue.400');
+    background-color: theme('colors.blue.50');
+    transition: all 0.2s ease-in-out;
+}
+
+.dark .drop-target {
+    background-color: theme('colors.blue.900');
+}
+
+/* Анимации для кнопок и интерактивных элементов */
+.btn-hover-effect {
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-hover-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Анимации для панелей */
+.panel-resize {
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+/* Анимации для загрузки */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.loading-pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Кастомные стили для компонентов */
+.file-icon {
+    transition: all 0.2s ease-in-out;
+}
+
+.file-icon:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,153 @@
+/* PanelResizer - Компонент для изменения размеров панелей с анимациями */
+
+.panel-resizer {
+    position: relative;
+    background: var(--surface-color);
+    transition: all 0.2s ease;
+    user-select: none;
+    z-index: 10;
+}
+
+.panel-resizer.horizontal {
+    width: 8px;
+    height: 100%;
+    cursor: col-resize;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.panel-resizer.vertical {
+    width: 100%;
+    height: 8px;
+    cursor: row-resize;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-resizer:hover {
+    background: var(--primary-color);
+}
+
+.panel-resizer.dragging {
+    background: var(--primary-dark);
+    box-shadow: 0 0 8px rgba(74, 85, 104, 0.3);
+}
+
+.panel-resizer.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--background-secondary);
+}
+
+.panel-resizer.disabled:hover {
+    background: var(--background-secondary);
+}
+
+.resizer-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.resizer-grip {
+    display: flex;
+    gap: 2px;
+}
+
+.panel-resizer.horizontal .resizer-grip {
+    flex-direction: column;
+    align-items: center;
+}
+
+.panel-resizer.vertical .resizer-grip {
+    flex-direction: row;
+    align-items: center;
+}
+
+.grip-dot {
+    width: 2px;
+    height: 2px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.panel-resizer:hover .grip-dot {
+    background: white;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.panel-resizer.dragging .grip-dot {
+    background: white;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+/* Активная зона для более легкого захвата */
+.panel-resizer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.panel-resizer.horizontal::before {
+    left: -4px;
+    right: -4px;
+}
+
+.panel-resizer.vertical::before {
+    top: -4px;
+    bottom: -4px;
+}
+
+/* Анимации */
+@keyframes resizeGlow {
+    0%, 100% {
+        box-shadow: 0 0 4px rgba(74, 85, 104, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(74, 85, 104, 0.4);
+    }
+}
+
+.panel-resizer:active {
+    animation: resizeGlow 0.6s ease-in-out infinite;
+}
+
+/* Темная тема */
+[data-theme="dark"] .panel-resizer {
+    background: rgba(55, 65, 81, 0.8);
+    border-color: rgba(75, 85, 99, 0.5);
+}
+
+[data-theme="dark"] .panel-resizer:hover {
+    background: var(--primary-color);
+}
+
+[data-theme="dark"] .grip-dot {
+    background: var(--text-muted);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .panel-resizer.horizontal {
+        width: 12px;
+    }
+    
+    .panel-resizer.vertical {
+        height: 12px;
+    }
+    
+    .grip-dot {
+        width: 3px;
+        height: 3px;
+    }
+}

@@ -1,0 +1,123 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Голубые градиенты -->
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#bbdefb;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#64b5f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2196f3;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#e3f2fd;stop-opacity:0.9" />
+      <stop offset="70%" style="stop-color:#64b5f6;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#1976d2;stop-opacity:0.3" />
+    </radialGradient>
+    
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="15%" style="stop-color:#f8faff;stop-opacity:1" />
+      <stop offset="85%" style="stop-color:#e8f4fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d6edfa;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Фильтры для эффектов -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1976d2" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Фоновый круг с градиентом -->
+  <circle cx="200" cy="200" r="190" fill="url(#blueGradient)" opacity="0.1"/>
+  
+  <!-- Основной щит государственной символики -->
+  <path d="M200 50 C230 50, 250 70, 250 100 L250 250 C250 290, 230 320, 200 350 C170 320, 150 290, 150 250 L150 100 C150 70, 170 50, 200 50 Z" 
+        fill="url(#shieldGradient)" 
+        stroke="url(#blueGradient)" 
+        stroke-width="3" 
+        filter="url(#shadow)"/>
+  
+  <!-- Внутренний декоративный элемент -->
+  <circle cx="200" cy="140" r="35" fill="url(#centerGlow)" filter="url(#glow)"/>
+  
+  <!-- Государственная звезда -->
+  <path d="M200 115 L208 135 L230 135 L214 147 L220 167 L200 155 L180 167 L186 147 L170 135 L192 135 Z" 
+        fill="#2196f3" 
+        filter="url(#glow)"/>
+  
+  <!-- Лавровые ветви (символ государственности) -->
+  <path d="M165 180 Q160 190, 162 200 Q165 210, 170 215 Q175 220, 182 218 Q185 215, 185 210" 
+        fill="none" 
+        stroke="#42a5f5" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  
+  <path d="M235 180 Q240 190, 238 200 Q235 210, 230 215 Q225 220, 218 218 Q215 215, 215 210" 
+        fill="none" 
+        stroke="#42a5f5" 
+        stroke-width="4" 
+        stroke-linecap="round"/>
+  
+  <!-- Декоративные листья -->
+  <ellipse cx="168" cy="190" rx="8" ry="12" fill="#64b5f6" opacity="0.7" transform="rotate(-20 168 190)"/>
+  <ellipse cx="175" cy="205" rx="6" ry="10" fill="#64b5f6" opacity="0.7" transform="rotate(-30 175 205)"/>
+  
+  <ellipse cx="232" cy="190" rx="8" ry="12" fill="#64b5f6" opacity="0.7" transform="rotate(20 232 190)"/>
+  <ellipse cx="225" cy="205" rx="6" ry="10" fill="#64b5f6" opacity="0.7" transform="rotate(30 225 205)"/>
+  
+  <!-- Текстовый элемент "ЕДИНЫЙ ЗАКАЗЧИК" -->
+  <text x="200" y="280" text-anchor="middle" 
+        font-family="Arial, sans-serif" 
+        font-size="16" 
+        font-weight="bold" 
+        fill="#1976d2">ЕДИНЫЙ</text>
+  
+  <text x="200" y="300" text-anchor="middle" 
+        font-family="Arial, sans-serif" 
+        font-size="16" 
+        font-weight="bold" 
+        fill="#1976d2">ЗАКАЗЧИК</text>
+  
+  <!-- Декоративные угловые элементы -->
+  <rect x="160" y="320" width="80" height="2" fill="url(#blueGradient)" opacity="0.6"/>
+  
+  <!-- Внешние декоративные дуги -->
+  <path d="M100 100 Q80 120, 100 140" 
+        fill="none" 
+        stroke="#64b5f6" 
+        stroke-width="2" 
+        opacity="0.5"/>
+  
+  <path d="M300 100 Q320 120, 300 140" 
+        fill="none" 
+        stroke="#64b5f6" 
+        stroke-width="2" 
+        opacity="0.5"/>
+  
+  <path d="M100 300 Q80 280, 100 260" 
+        fill="none" 
+        stroke="#64b5f6" 
+        stroke-width="2" 
+        opacity="0.5"/>
+  
+  <path d="M300 300 Q320 280, 300 260" 
+        fill="none" 
+        stroke="#64b5f6" 
+        stroke-width="2" 
+        opacity="0.5"/>
+  
+  <!-- Светящиеся точки по углам -->
+  <circle cx="120" cy="120" r="3" fill="#ffffff" filter="url(#glow)"/>
+  <circle cx="280" cy="120" r="3" fill="#ffffff" filter="url(#glow)"/>
+  <circle cx="120" cy="280" r="3" fill="#ffffff" filter="url(#glow)"/>
+  <circle cx="280" cy="280" r="3" fill="#ffffff" filter="url(#glow)"/>
+</svg>

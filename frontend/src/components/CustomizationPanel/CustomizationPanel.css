@@ -1,0 +1,38 @@
+.customization-panel {
+  background: var(--background-card, #fff);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 24px 20px;
+  margin: 16px auto;
+  max-width: 340px;
+  color: var(--text-primary);
+}
+.customization-panel h3 {
+  margin-bottom: 18px;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.customization-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.customization-group label {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+}
+.customization-group select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--background-secondary, #fafdff);
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.customization-group select:focus {
+  border-color: var(--primary-color);
+}

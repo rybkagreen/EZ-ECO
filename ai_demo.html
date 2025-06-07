@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Integration Demo - Django File Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .demo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .demo-card h3 {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .result.success {
+            background: #f0fff4;
+            border: 2px solid #38a169;
+            color: #2f855a;
+        }
+        
+        .result.error {
+            background: #fed7d7;
+            border: 2px solid #e53e3e;
+            color: #c53030;
+        }
+        
+        .result.loading {
+            background: #ebf8ff;
+            border: 2px solid #3182ce;
+            color: #2c5282;
+        }
+        
+        .status-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+            font-weight: 600;
+        }
+        
+        .status-indicator.online {
+            color: #38a169;
+        }
+        
+        .status-indicator.offline {
+            color: #e53e3e;
+        }
+        
+        .status-indicator::before {
+            content: '●';
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        
+        .model-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .model-item {
+            background: #f7fafc;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Integration Demo</h1>
+            <p>Django File Manager с интеграцией Ollama AI</p>
+        </div>
+        
+        <div class="status-card">
+            <h3>Статус системы</h3>
+            <div id="systemStatus">
+                <div class="status-indicator" id="djangoStatus">Django API: Проверка...</div>
+                <div class="status-indicator" id="ollamaStatus">Ollama AI: Проверка...</div>
+            </div>
+            <div id="modelInfo" class="model-info" style="display: none;"></div>
+        </div>
+        
+        <div class="demo-grid">
+            <!-- Text Analysis -->
+            <div class="demo-card">
+                <h3>📝 Анализ текста</h3>
+                <div class="form-group">
+                    <label for="textToAnalyze">Текст для анализа:</label>
+                    <textarea id="textToAnalyze" placeholder="Введите текст для анализа...">Django - это высокоуровневый Python веб-фреймворк, который способствует быстрой разработке и чистому, прагматичному дизайну. Он решает большую часть сложностей веб-разработки, поэтому вы можете сосредоточиться на написании приложения без необходимости изобретать велосипед.</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="analysisType">Тип анализа:</label>
+                    <select id="analysisType">
+                        <option value="general">Общий анализ</option>
+                        <option value="sentiment">Анализ настроений</option>
+                        <option value="summary">Резюме</option>
+                        <option value="keywords">Ключевые слова</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="analyzeText()">Анализировать текст</button>
+                <div id="textResult" class="result" style="display: none;"></div>
+            </div>
+            
+            <!-- Code Analysis -->
+            <div class="demo-card">
+                <h3>💻 Анализ кода</h3>
+                <div class="form-group">
+                    <label for="codeToAnalyze">Код для анализа:</label>
+                    <textarea id="codeToAnalyze" placeholder="Введите код для анализа...">def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# Вычисление 10-го числа Фибоначчи
+result = fibonacci(10)
+print(f"10-е число Фибоначчи: {result}")</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="codeLanguage">Язык программирования:</label>
+                    <select id="codeLanguage">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="auto">Автоопределение</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="analyzeCode()">Анализировать код</button>
+                <div id="codeResult" class="result" style="display: none;"></div>
+            </div>
+            
+            <!-- Text Generation -->
+            <div class="demo-card">
+                <h3>✨ Генерация текста</h3>
+                <div class="form-group">
+                    <label for="promptText">Промпт для генерации:</label>
+                    <textarea id="promptText" placeholder="Введите промпт...">Напиши краткое описание преимуществ использования Django для веб-разработки</textarea>
+                </div>
+                <button class="btn" onclick="generateText()">Генерировать текст</button>
+                <div id="generateResult" class="result" style="display: none;"></div>
+            </div>
+            
+            <!-- Smart Search -->
+            <div class="demo-card">
+                <h3>🔍 Семантический поиск</h3>
+                <div class="form-group">
+                    <label for="searchQuery">Поисковый запрос:</label>
+                    <input type="text" id="searchQuery" placeholder="Введите запрос..." value="как создать веб-приложение">
+                </div>
+                <div class="form-group">
+                    <label for="searchContext">Контекст для поиска:</label>
+                    <textarea id="searchContext" placeholder="Введите контекст...">Django предоставляет множество встроенных функций для создания веб-приложений. Он включает ORM для работы с базами данных, систему шаблонов, аутентификацию пользователей, админ-панель и многое другое. Flask является более легковесной альтернативой, предоставляющей больше гибкости но требующей больше ручной настройки.</textarea>
+                </div>
+                <button class="btn" onclick="smartSearch()">Выполнить поиск</button>
+                <div id="searchResult" class="result" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8003/api/v1';
+        
+        // Проверка статуса системы при загрузке
+        window.onload = function() {
+            checkSystemStatus();
+        };
+        
+        async function checkSystemStatus() {
+            // Проверка Django API
+            try {
+                const response = await fetch(`${API_BASE}/health/`);
+                const data = await response.json();
+                document.getElementById('djangoStatus').textContent = 'Django API: Онлайн';
+                document.getElementById('djangoStatus').className = 'status-indicator online';
+            } catch (error) {
+                document.getElementById('djangoStatus').textContent = 'Django API: Офлайн';
+                document.getElementById('djangoStatus').className = 'status-indicator offline';
+            }
+            
+            // Проверка Ollama AI
+            try {
+                const response = await fetch(`${API_BASE}/ai/ollama/status/`);
+                const data = await response.json();
+                
+                if (data.connected) {
+                    document.getElementById('ollamaStatus').textContent = 'Ollama AI: Онлайн';
+                    document.getElementById('ollamaStatus').className = 'status-indicator online';
+                    
+                    // Показать информацию о моделях
+                    const modelInfo = document.getElementById('modelInfo');
+                    modelInfo.style.display = 'grid';
+                    modelInfo.innerHTML = `
+                        <div class="model-item">
+                            <strong>URL:</strong> ${data.base_url}
+                        </div>
+                        <div class="model-item">
+                            <strong>Модель:</strong> ${data.default_model}
+                        </div>
+                        <div class="model-item">
+                            <strong>Доступные модели:</strong> ${data.available_models.length || 'Загрузка...'}
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('ollamaStatus').textContent = 'Ollama AI: Офлайн';
+                    document.getElementById('ollamaStatus').className = 'status-indicator offline';
+                }
+            } catch (error) {
+                document.getElementById('ollamaStatus').textContent = 'Ollama AI: Ошибка подключения';
+                document.getElementById('ollamaStatus').className = 'status-indicator offline';
+            }
+        }
+        
+        async function analyzeText() {
+            const text = document.getElementById('textToAnalyze').value;
+            const analysisType = document.getElementById('analysisType').value;
+            const resultDiv = document.getElementById('textResult');
+            
+            if (!text) {
+                showResult(resultDiv, 'Введите текст для анализа', 'error');
+                return;
+            }
+            
+            showResult(resultDiv, 'Анализируем текст...', 'loading');
+            
+            try {
+                const response = await fetch(`${API_BASE}/ai/analyze/text/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        analysis_type: analysisType
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult(resultDiv, JSON.stringify(data, null, 2), 'success');
+                } else {
+                    const error = await response.json();
+                    showResult(resultDiv, `Ошибка: ${JSON.stringify(error, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                showResult(resultDiv, `Ошибка сети: ${error.message}`, 'error');
+            }
+        }
+        
+        async function analyzeCode() {
+            const code = document.getElementById('codeToAnalyze').value;
+            const language = document.getElementById('codeLanguage').value;
+            const resultDiv = document.getElementById('codeResult');
+            
+            if (!code) {
+                showResult(resultDiv, 'Введите код для анализа', 'error');
+                return;
+            }
+            
+            showResult(resultDiv, 'Анализируем код...', 'loading');
+            
+            try {
+                const response = await fetch(`${API_BASE}/ai/analyze/text/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: code,
+                        analysis_type: 'code',
+                        language: language
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult(resultDiv, JSON.stringify(data, null, 2), 'success');
+                } else {
+                    const error = await response.json();
+                    showResult(resultDiv, `Ошибка: ${JSON.stringify(error, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                showResult(resultDiv, `Ошибка сети: ${error.message}`, 'error');
+            }
+        }
+        
+        async function generateText() {
+            const prompt = document.getElementById('promptText').value;
+            const resultDiv = document.getElementById('generateResult');
+            
+            if (!prompt) {
+                showResult(resultDiv, 'Введите промпт для генерации', 'error');
+                return;
+            }
+            
+            showResult(resultDiv, 'Генерируем текст...', 'loading');
+            
+            try {
+                const response = await fetch(`${API_BASE}/ai/generate/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult(resultDiv, JSON.stringify(data, null, 2), 'success');
+                } else {
+                    const error = await response.json();
+                    showResult(resultDiv, `Ошибка: ${JSON.stringify(error, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                showResult(resultDiv, `Ошибка сети: ${error.message}`, 'error');
+            }
+        }
+        
+        async function smartSearch() {
+            const query = document.getElementById('searchQuery').value;
+            const context = document.getElementById('searchContext').value;
+            const resultDiv = document.getElementById('searchResult');
+            
+            if (!query) {
+                showResult(resultDiv, 'Введите поисковый запрос', 'error');
+                return;
+            }
+            
+            showResult(resultDiv, 'Выполняем семантический поиск...', 'loading');
+            
+            try {
+                const response = await fetch(`${API_BASE}/ai/search/smart/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        context: context
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult(resultDiv, JSON.stringify(data, null, 2), 'success');
+                } else {
+                    const error = await response.json();
+                    showResult(resultDiv, `Ошибка: ${JSON.stringify(error, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                showResult(resultDiv, `Ошибка сети: ${error.message}`, 'error');
+            }
+        }
+        
+        function showResult(element, text, type) {
+            element.style.display = 'block';
+            element.textContent = text;
+            element.className = `result ${type}`;
+        }
+    </script>
+</body>
+</html>

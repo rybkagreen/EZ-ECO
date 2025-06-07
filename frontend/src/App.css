@@ -1,0 +1,133 @@
+/* Главный стиль приложения в терминальном стиле */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'JetBrains Mono', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--background-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+code {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.App {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background: var(--background-primary);
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+    overflow: hidden;
+}
+
+.terminal-app {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Глобальные стили для терминального интерфейса */
+.terminal-app input,
+.terminal-app button,
+.terminal-app select,
+.terminal-app textarea {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Контейнер контента с отступом для Header */
+.app-content {
+    flex: 1;
+    padding-top: 72px; /* Высота Header + отступ */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Адаптивные отступы для мобильных устройств */
+@media (max-width: 480px) {
+    .app-content {
+        padding-top: 60px; /* Меньше для мобильных */
+    }
+}
+
+/* Стили скроллбара для всего приложения */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Убираем фокусные рамки и заменяем на терминальные */
+*:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+/* Анимации для глобальных переходов */
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+}
+
+/* Спиннер загрузки для Suspense */
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.loading-spinner::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--accent-primary, #3b82f6);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

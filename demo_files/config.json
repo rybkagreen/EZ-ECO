@@ -1,0 +1,34 @@
+{
+  "app": {
+    "name": "React Terminal File Manager",
+    "version": "1.0.0",
+    "description": "Professional file manager with terminal styling",
+    "author": "AI Developer",
+    "features": [
+      "File navigation",
+      "Preview system", 
+      "Search & filtering",
+      "Drag & drop upload",
+      "Hotkey support",
+      "Performance monitoring",
+      "Accessibility features",
+      "Export utilities"
+    ]
+  },
+  "performance": {
+    "bundleSize": "110kB",
+    "loadTime": "<2s",
+    "lightHouseScore": "95+",
+    "accessibility": "WCAG 2.1 AA"
+  },
+  "security": {
+    "encryption": "AES-256-GCM",
+    "checksums": "SHA-256",
+    "keyDerivation": "PBKDF2"
+  },
+  "animations": {
+    "types": ["fade", "slide", "scale", "rotate", "bounce", "elastic", "matrix", "particle"],
+    "triggers": ["hover", "click", "scroll", "load", "focus"],
+    "performance": "60fps optimized"
+  }
+}

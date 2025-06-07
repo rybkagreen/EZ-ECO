@@ -1,0 +1,90 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Градиенты для минималистичного дизайна -->
+    <linearGradient id="cleanBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#e1f5fe;stop-opacity:1" />
+      <stop offset="80%" style="stop-color:#81d4fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0288d1;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="pureWhite" cx="50%" cy="50%" r="80%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f8ff;stop-opacity:0.9" />
+    </radialGradient>
+    
+    <!-- Тонкие эффекты -->
+    <filter id="subtleGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="lightShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0288d1" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  
+  <!-- Основной круг -->
+  <circle cx="200" cy="200" r="160" fill="url(#pureWhite)" filter="url(#lightShadow)"/>
+  
+  <!-- Тонкая рамка -->
+  <circle cx="200" cy="200" r="160" fill="none" stroke="url(#cleanBlue)" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Центральный логотип - стилизованный герб -->
+  <circle cx="200" cy="160" r="50" fill="url(#cleanBlue)" opacity="0.1"/>
+  <circle cx="200" cy="160" r="40" fill="url(#pureWhite)" filter="url(#subtleGlow)"/>
+  
+  <!-- Государственная эмблема - упрощенная -->
+  <polygon points="200,130 215,145 230,145 220,155 225,170 200,160 175,170 180,155 170,145 185,145" 
+           fill="#0288d1" 
+           filter="url(#subtleGlow)"/>
+  
+  <!-- Декоративные элементы -->
+  <path d="M170 180 Q190 190, 210 180" 
+        fill="none" 
+        stroke="#0288d1" 
+        stroke-width="2" 
+        opacity="0.7"/>
+  
+  <path d="M190 180 Q200 190, 210 180" 
+        fill="none" 
+        stroke="#0288d1" 
+        stroke-width="1" 
+        opacity="0.5"/>
+  
+  <!-- Текст с чистой типографикой -->
+  <text x="200" y="250" text-anchor="middle" 
+        font-family="Arial, Helvetica, sans-serif" 
+        font-size="24" 
+        font-weight="300" 
+        fill="#0288d1" 
+        letter-spacing="2px">ЕДИНЫЙ</text>
+  
+  <text x="200" y="280" text-anchor="middle" 
+        font-family="Arial, Helvetica, sans-serif" 
+        font-size="24" 
+        font-weight="300" 
+        fill="#0288d1" 
+        letter-spacing="2px">ЗАКАЗЧИК</text>
+  
+  <!-- Минималистичные декоративные линии -->
+  <line x1="120" y1="300" x2="280" y2="300" 
+        stroke="url(#cleanBlue)" 
+        stroke-width="1" 
+        opacity="0.4"/>
+  
+  <!-- Точки по периметру -->
+  <circle cx="200" cy="60" r="2" fill="#0288d1" opacity="0.6"/>
+  <circle cx="200" cy="340" r="2" fill="#0288d1" opacity="0.6"/>
+  <circle cx="60" cy="200" r="2" fill="#0288d1" opacity="0.6"/>
+  <circle cx="340" cy="200" r="2" fill="#0288d1" opacity="0.6"/>
+  
+  <!-- Диагональные точки -->
+  <circle cx="115" cy="115" r="1.5" fill="#0288d1" opacity="0.4"/>
+  <circle cx="285" cy="115" r="1.5" fill="#0288d1" opacity="0.4"/>
+  <circle cx="115" cy="285" r="1.5" fill="#0288d1" opacity="0.4"/>
+  <circle cx="285" cy="285" r="1.5" fill="#0288d1" opacity="0.4"/>
+</svg>

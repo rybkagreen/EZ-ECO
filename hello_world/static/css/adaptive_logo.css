@@ -1,0 +1,316 @@
+/* Адаптивный логотип компании */
+.company-logo {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2));
+}
+
+/* Размеры логотипа для разных устройств */
+.company-logo.size-xs {
+    width: 40px;
+    height: 40px;
+}
+
+.company-logo.size-sm {
+    width: 60px;
+    height: 60px;
+}
+
+.company-logo.size-md {
+    width: 80px;
+    height: 80px;
+}
+
+.company-logo.size-lg {
+    width: 120px;
+    height: 120px;
+}
+
+.company-logo.size-xl {
+    width: 160px;
+    height: 160px;
+}
+
+/* Фоновый логотип */
+.background-logo {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    opacity: 0.15;
+    width: 120px;
+    height: 120px;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Адаптивные медиа-запросы */
+
+/* Мобильные устройства (портретная ориентация) */
+@media (max-width: 480px) {
+    .company-logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .background-logo {
+        width: 80px;
+        height: 80px;
+        top: 1rem;
+        left: 1rem;
+        opacity: 0.1;
+    }
+    
+    /* Адаптация интерфейса для мобильных */
+    .login-card {
+        width: 95%;
+        max-width: 350px;
+        padding: 1.5rem;
+        margin: 1rem auto;
+        border-radius: 12px;
+    }
+    
+    .loading-square {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .form-title {
+        font-size: 1.5rem;
+    }
+    
+    .input-wrapper input,
+    .input-wrapper select {
+        font-size: 16px; /* Предотвращает зум на iOS */
+        padding: 12px 16px;
+    }
+    
+    .login-btn,
+    .demo-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Мобильные устройства (ландшафтная ориентация) */
+@media (max-width: 768px) and (orientation: landscape) {
+    .company-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .background-logo {
+        width: 90px;
+        height: 90px;
+        opacity: 0.12;
+    }
+    
+    .login-card {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+/* Планшеты */
+@media (min-width: 481px) and (max-width: 768px) {
+    .company-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .background-logo {
+        width: 100px;
+        height: 100px;
+        top: 1.5rem;
+        left: 1.5rem;
+        opacity: 0.12;
+    }
+    
+    .login-card {
+        width: 80%;
+        max-width: 450px;
+        padding: 2rem;
+    }
+    
+    .loading-square {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Планшеты большие и маленькие ноутбуки */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .company-logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .background-logo {
+        width: 120px;
+        height: 120px;
+        opacity: 0.15;
+    }
+    
+    .login-card {
+        width: 70%;
+        max-width: 500px;
+        padding: 2.5rem;
+    }
+    
+    .loading-square {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Ноутбуки и небольшие десктопы */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .company-logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .background-logo {
+        width: 140px;
+        height: 140px;
+        opacity: 0.15;
+    }
+    
+    .login-card {
+        width: 60%;
+        max-width: 550px;
+        padding: 3rem;
+    }
+    
+    .loading-square {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Большие десктопы и мониторы 4K */
+@media (min-width: 1441px) {
+    .company-logo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .background-logo {
+        width: 160px;
+        height: 160px;
+        top: 3rem;
+        left: 3rem;
+        opacity: 0.18;
+    }
+    
+    .login-card {
+        width: 50%;
+        max-width: 600px;
+        padding: 3.5rem;
+    }
+    
+    .loading-square {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .form-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Очень высокие экраны */
+@media (min-height: 1200px) {
+    .background-logo {
+        top: 4rem;
+        left: 4rem;
+    }
+    
+    .login-card {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+}
+
+/* Адаптация для высокой плотности пикселей (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .company-logo {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    .background-logo {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+    .background-logo {
+        opacity: 0.08;
+        filter: invert(1) opacity(0.8);
+    }
+    
+    .company-logo {
+        filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.1));
+    }
+}
+
+/* Анимации для логотипа */
+.company-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 12px rgba(59, 130, 246, 0.3));
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.company-logo.animate {
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+/* Адаптация для уменьшенной анимации (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+    .company-logo {
+        transition: none;
+        animation: none;
+    }
+    
+    .company-logo:hover {
+        transform: none;
+    }
+    
+    .background-logo {
+        transition: none;
+    }
+}
+
+/* Адаптация для устройств с сенсорным экраном */
+@media (hover: none) and (pointer: coarse) {
+    .company-logo:hover {
+        transform: none;
+        filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2));
+    }
+    
+    .company-logo:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Адаптация для печати */
+@media print {
+    .background-logo {
+        display: none;
+    }
+    
+    .company-logo {
+        filter: none;
+        max-width: 2cm;
+        max-height: 2cm;
+    }
+}

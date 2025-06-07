@@ -1,0 +1,16 @@
+{
+  "name": "File Manager with Code Chan",
+  "version": "1.0.0",
+  "description": "Интегрированный файловый менеджер с AI маскотом",
+  "features": [
+    "Drag & Drop",
+    "File Preview", 
+    "WebSocket Updates",
+    "AI Integration"
+  ],
+  "mascot": {
+    "name": "Code Chan",
+    "personality": "Дружелюбный и полезный помощник программиста",
+    "abilities": ["code_analysis", "file_management", "real_time_updates"]
+  }
+}

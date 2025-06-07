@@ -1,0 +1,265 @@
+/* Спокойная цветовая палитра для файлового менеджера */
+
+:root {
+  /* Основные цвета - ОБНОВЛЕНО под дизайн-систему v2.0 */
+  --primary-white: #FFFFFF;
+  --accent-blue: #00ADEF;
+  --accent-blue-light: #33BDFF;
+  --accent-blue-dark: #0082BC;
+  
+  /* Градиенты */
+  --gradient-primary: linear-gradient(135deg, #FFFFFF 0%, #F5FBFF 100%);
+  --gradient-accent: linear-gradient(135deg, #00ADEF 0%, #33BDFF 100%);
+  --gradient-subtle: linear-gradient(180deg, #FFFFFF 0%, #F8FCFF 100%);
+  
+  /* Совместимость со старыми переменными */
+  --primary-color: #00ADEF;
+  --primary-light: #E6F7FF;
+  --primary-dark: #0082BC;
+  
+  /* Нейтральные цвета */
+  --gray-50: #f7fafc;
+  --gray-100: #edf2f7;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e0;
+  --gray-400: #a0aec0;
+  --gray-500: #718096;
+  --gray-600: #4a5568;
+  --gray-700: #2d3748;
+  --gray-800: #1a202c;
+  --gray-900: #171923;
+  
+  /* Состояния */
+  --success-color: #68d391;
+  --success-dark: #38a169;
+  --error-color: #f56565;
+  --error-dark: #e53e3e;
+  --warning-color: #f6ad55;
+  --warning-dark: #ed8936;
+  --info-color: #63b3ed;
+  --info-dark: #4299e1;
+  
+  /* Фоны */
+  --background-primary: #ffffff;
+  --background-secondary: #f8fafc;
+  --background-card: rgba(255, 255, 255, 0.98);
+  --background-overlay: rgba(59, 130, 246, 0.05);
+  
+  /* Границы */
+  --border-color: #e2e8f0;
+  --border-hover: #bfdbfe;
+  --border-focus: #3b82f6;
+  
+  /* Тени */
+  --shadow-sm: 0 2px 4px rgba(59, 130, 246, 0.05);
+  --shadow-md: 0 4px 16px rgba(59, 130, 246, 0.08);
+  --shadow-lg: 0 8px 24px rgba(59, 130, 246, 0.10);
+  --shadow-xl: 0 12px 32px rgba(59, 130, 246, 0.15);
+  
+  /* Переходы */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Радиусы */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  
+  /* Размеры */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Текст */
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --text-light: #cbd5e1;
+  --text-white: #ffffff;
+  
+  /* Нежно-голубые акценты - ОБНОВЛЕНО */
+  --accent-blue-50: #F0FBFF;
+  --accent-blue-100: #E6F7FF;
+  --accent-blue-200: #BAE7FF;
+  --accent-blue-300: #7DD3FC;
+  --accent-blue-400: #33BDFF;
+  --accent-blue-500: #00ADEF;
+
+  /* Терминальные цвета */
+  --terminal-green: #50fa7b;
+  --terminal-green-dark: #2ec946;
+  --terminal-blue: #8be9fd;
+  --terminal-blue-dark: #5dbce8;
+  --terminal-purple: #bd93f9;
+  --terminal-purple-dark: #9c71d4;
+  --terminal-red: #ff5555;
+  --terminal-red-dark: #e64343;
+  --terminal-yellow: #f1fa8c;
+  --terminal-yellow-dark: #d9e066;
+  --terminal-orange: #ffb86c;
+  --terminal-orange-dark: #ff9500;
+}
+
+/* Темная тема (ручное переключение) */
+[data-theme="dark"] {
+  --background-primary: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  --background-secondary: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  --background-card: rgba(45, 55, 72, 0.95);
+  --background-overlay: rgba(26, 32, 44, 0.8);
+  --background-hover: rgba(55, 65, 81, 0.7);
+  --surface-color: #2d3748;
+  --surface-hover: #4a5568;
+  
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #a0aec0;
+  --text-light: #718096;
+  
+  --border-color: rgba(74, 85, 104, 0.3);
+  --border-hover: rgba(113, 128, 150, 0.5);
+  --border-focus: rgba(113, 128, 150, 0.7);
+}
+
+/* Темная тема (системные настройки) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background-primary: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    --background-secondary: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    --background-card: rgba(45, 55, 72, 0.95);
+    --background-overlay: rgba(26, 32, 44, 0.8);
+    --background-hover: rgba(55, 65, 81, 0.7);
+    --surface-color: #2d3748;
+    --surface-hover: #4a5568;
+    
+    --text-primary: #f7fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #a0aec0;
+    --text-light: #718096;
+    
+    --border-color: rgba(74, 85, 104, 0.3);
+    --border-hover: rgba(113, 128, 150, 0.5);
+    --border-focus: rgba(113, 128, 150, 0.7);
+
+  /* Темная тема */
+  --dark-bg-primary: #282a36;
+  --dark-bg-secondary: #44475a;
+  --dark-surface: #3d4152;
+  --dark-surface-hover: #525566;
+  --dark-text-primary: #f8f8f2;
+  --dark-text-secondary: #a8b2d1;
+  --dark-border: #6272a4;
+  --dark-border-hover: #7d8dc1;
+  
+  /* Адаптивные размеры */
+  --container-padding: 1rem;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  
+  /* Размеры шрифтов */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  
+  /* Отступы */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Z-index значения */
+  --z-dropdown: 1000;
+  --z-modal: 1100;
+  --z-tooltip: 1200;
+  --z-toast: 1300;
+}
+}
+
+/* Адаптивные переменные для мобильных устройств */
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 0.5rem;
+    --border-radius-md: 6px;
+    --border-radius-lg: 8px;
+    --border-radius-xl: 12px;
+    
+    --font-size-sm: 0.8rem;
+    --font-size-md: 0.9rem;
+    --font-size-lg: 1rem;
+    --font-size-xl: 1.1rem;
+    --font-size-2xl: 1.3rem;
+    
+    --spacing-md: 0.75rem;
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.5rem;
+    --spacing-2xl: 2rem;
+  }
+}
+
+/* Адаптивные переменные для планшетов */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --container-padding: 0.75rem;
+    --font-size-xl: 1.2rem;
+    --font-size-2xl: 1.4rem;
+    --spacing-xl: 1.75rem;
+    --spacing-2xl: 2.5rem;
+  }
+}
+
+/* Адаптивные переменные для больших экранов */
+@media (min-width: 1200px) {
+  :root {
+    --container-padding: 1.5rem;
+    --border-radius-xl: 20px;
+    --font-size-2xl: 1.75rem;
+    --spacing-2xl: 4rem;
+  }
+}
+
+/* Адаптивные переменные для 4K и ультраширoких экранов */
+@media (min-width: 1920px) {
+  :root {
+    --container-padding: 2rem;
+    --border-radius-xl: 24px;
+    --font-size-2xl: 2rem;
+    --spacing-2xl: 5rem;
+  }
+}
+
+/* Утилитарные классы для быстрого применения цветов */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-light { color: var(--text-light); }
+
+.bg-primary { background: var(--primary-color); }
+.bg-secondary { background: var(--secondary-color); }
+.bg-success { background: var(--success-color); }
+.bg-error { background: var(--error-color); }
+.bg-warning { background: var(--warning-color); }
+.bg-info { background: var(--info-color); }
+
+.border-primary { border-color: var(--border-color); }
+.border-hover { border-color: var(--border-hover); }
+.border-focus { border-color: var(--border-focus); }
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }

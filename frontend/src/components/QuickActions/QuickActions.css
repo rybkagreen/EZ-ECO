@@ -1,0 +1,190 @@
+.quick-actions {
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.quick-actions-title {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.quick-action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--action-color, var(--primary-color)) 0%, var(--action-color, var(--primary-dark)) 100%);
+    color: white;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-md);
+    min-height: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.quick-action-btn:hover::before {
+    opacity: 1;
+}
+
+.quick-action-btn:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: var(--shadow-lg);
+}
+
+.quick-action-btn:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.quick-action-icon {
+    font-size: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    z-index: 1;
+    position: relative;
+}
+
+.quick-action-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    z-index: 1;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Специальные цвета для разных действий */
+.quick-action-btn:nth-child(1) {
+    background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+}
+
+.quick-action-btn:nth-child(2) {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+}
+
+.quick-action-btn:nth-child(3) {
+    background: linear-gradient(135deg, var(--warning-color) 0%, var(--warning-dark) 100%);
+}
+
+.quick-action-btn:nth-child(4) {
+    background: linear-gradient(135deg, var(--info-color) 0%, var(--info-dark) 100%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .quick-actions {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .quick-action-btn {
+        padding: 12px 8px;
+        min-height: 70px;
+    }
+    
+    .quick-action-icon {
+        font-size: 20px;
+    }
+    
+    .quick-action-label {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-action-btn {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 16px;
+        min-height: auto;
+    }
+    
+    .quick-action-icon {
+        font-size: 24px;
+    }
+    
+    .quick-action-label {
+        font-size: 14px;
+        text-align: left;
+    }
+}
+
+/* Анимации */
+.quick-actions {
+    animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quick-action-btn {
+    animation: bounceIn 0.6s ease-out;
+}
+
+.quick-action-btn:nth-child(1) { animation-delay: 0.1s; }
+.quick-action-btn:nth-child(2) { animation-delay: 0.2s; }
+.quick-action-btn:nth-child(3) { animation-delay: 0.3s; }
+.quick-action-btn:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

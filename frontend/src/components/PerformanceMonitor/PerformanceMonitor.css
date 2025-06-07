@@ -1,0 +1,295 @@
+/* Performance Monitor - Мониторинг производительности файлового менеджера */
+
+.performance-monitor {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.performance-monitor:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 20px rgba(74, 85, 104, 0.1);
+}
+
+.performance-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.performance-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.025em;
+}
+
+.performance-score {
+    background: var(--success-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+    margin-left: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.performance-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.metric-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.metric-item:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateX(4px);
+}
+
+.metric-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--background-primary);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.metric-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
+.metric-value {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.performance-bar {
+    height: 4px;
+    background: var(--success-color);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.performance-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
+    border-radius: 2px;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Компактная версия */
+.performance-monitor-compact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    backdrop-filter: blur(10px);
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.performance-monitor-compact:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 12px rgba(74, 85, 104, 0.15);
+}
+
+.performance-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--background-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 8px;
+    box-shadow: 0 8px 24px rgba(74, 85, 104, 0.15);
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.perf-metric {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.perf-metric:last-child {
+    margin-bottom: 0;
+}
+
+.perf-metric span {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .performance-monitor {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .performance-header {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .performance-title {
+        font-size: 0.8rem;
+    }
+    
+    .performance-score {
+        padding: 3px 6px;
+        font-size: 0.7rem;
+        min-width: 35px;
+    }
+    
+    .metric-item {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .metric-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .metric-label {
+        font-size: 0.7rem;
+    }
+    
+    .metric-value {
+        font-size: 0.8rem;
+    }
+}
+
+/* Темная тема */
+[data-theme="dark"] .performance-monitor {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(75, 85, 99, 0.5);
+}
+
+[data-theme="dark"] .metric-item {
+    background: rgba(55, 65, 81, 0.5);
+}
+
+[data-theme="dark"] .metric-item:hover {
+    background: rgba(55, 65, 81, 0.7);
+}
+
+[data-theme="dark"] .metric-icon {
+    background: rgba(17, 24, 39, 0.8);
+}
+
+[data-theme="dark"] .performance-tooltip {
+    background: rgba(17, 24, 39, 0.9);
+    border-color: rgba(75, 85, 99, 0.5);
+}
+
+/* Анимации состояний производительности */
+.performance-monitor.excellent {
+    border-color: #22c55e;
+}
+
+.performance-monitor.good {
+    border-color: #3b82f6;
+}
+
+.performance-monitor.fair {
+    border-color: #f59e0b;
+}
+
+.performance-monitor.poor {
+    border-color: #ef4444;
+    animation: performanceWarning 2s infinite;
+}
+
+@keyframes performanceWarning {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(239, 68, 68, 0.1);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+    }
+}
+
+/* Плавные переходы */
+.performance-monitor * {
+    transition: all 0.2s ease;
+}
+
+/* Микроанимации */
+.metric-icon {
+    animation: metricPulse 3s infinite;
+}
+
+@keyframes metricPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.metric-icon:hover {
+    animation: none;
+    transform: scale(1.1);
+    color: var(--primary-color);
+}

@@ -1,0 +1,181 @@
+/* Вертикальная панель быстрых действий в стиле терминала Warp */
+.vertical-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 0.5rem;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    width: 3rem;
+    min-height: 100%;
+    position: sticky;
+    top: 0;
+}
+
+.actions-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.actions-separator {
+    height: 1px;
+    background: var(--border-color);
+    margin: 0.25rem 0;
+}
+
+.actions-spacer {
+    flex: 1;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 0.375rem;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.action-btn:hover {
+    background: var(--surface-hover);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* Специальные стили для разных типов кнопок */
+.action-btn.create:hover {
+    background: var(--success-light);
+    color: var(--success-dark);
+}
+
+.action-btn.delete:hover {
+    background: var(--error-light);
+    color: var(--error-dark);
+}
+
+.action-btn.edit:hover,
+.action-btn.copy:hover,
+.action-btn.move:hover {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.action-btn.upload:hover,
+.action-btn.download:hover {
+    background: var(--secondary-light);
+    color: var(--secondary-dark);
+}
+
+.action-btn.search:hover,
+.action-btn.refresh:hover {
+    background: var(--info-light);
+    color: var(--info-dark);
+}
+
+.action-btn.chat:hover {
+    background: var(--warning-light);
+    color: var(--warning-dark);
+}
+
+/* Специальные стили для ModernButton в VerticalActions */
+.vertical-actions .delete-action {
+    --button-color: #ef4444;
+    --button-hover-color: #dc2626;
+}
+
+.vertical-actions .delete-action:hover {
+    border-color: var(--button-color) !important;
+    color: var(--button-color) !important;
+    box-shadow: 0 0 0 1px var(--button-color) !important;
+}
+
+/* Анимация для выделенных действий */
+.selection-actions .action-btn {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Tooltip стили */
+.action-btn::after {
+    content: attr(title);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--background-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+}
+
+.action-btn:hover::after {
+    opacity: 1;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .vertical-actions {
+        flex-direction: row;
+        width: 100%;
+        min-height: auto;
+        position: sticky;
+        bottom: 0;
+        top: auto;
+        padding: 0.5rem;
+        overflow-x: auto;
+    }
+    
+    .actions-group {
+        flex-direction: row;
+    }
+    
+    .actions-separator {
+        width: 1px;
+        height: 2rem;
+        margin: 0 0.25rem;
+    }
+    
+    .actions-spacer {
+        display: none;
+    }
+    
+    .action-btn::after {
+        left: 50%;
+        top: auto;
+        bottom: 100%;
+        transform: translateX(-50%);
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+    }
+}

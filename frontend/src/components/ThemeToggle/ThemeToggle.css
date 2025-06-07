@@ -1,0 +1,101 @@
+/* ThemeToggle - Переключатель тем в стиле терминала Warp */
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: var(--background-hover);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .theme-toggle-icon {
+    transform: scale(1.1);
+}
+
+.theme-toggle-text {
+    font-size: 0.7rem;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+}
+
+/* Анимация иконок */
+.icon-sun,
+.icon-moon {
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover .icon-sun {
+    color: #f59e0b;
+    filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4));
+}
+
+.theme-toggle:hover .icon-moon {
+    color: #3b82f6;
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.4));
+}
+
+/* Темная тема */
+[data-theme="dark"] .theme-toggle {
+    background: rgba(45, 55, 72, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background: rgba(55, 65, 81, 0.9);
+    border-color: #3b82f6;
+    color: #f7fafc;
+}
+
+/* Accessibility */
+.theme-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.theme-toggle:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .theme-toggle {
+        padding: 0.5rem;
+        gap: 0.25rem;
+    }
+    
+    .theme-toggle-text {
+        font-size: 0.65rem;
+    }
+}

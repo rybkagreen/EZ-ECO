@@ -1,0 +1,497 @@
+/* Advanced Animations CSS */
+.advanced-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animation Variables */
+:root {
+  --animation-duration: 300ms;
+  --animation-delay: 0ms;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-easing-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Base Animation States */
+.animate-fade {
+  animation: fadeAnimation var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-slide {
+  animation: slideAnimation var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-scale {
+  animation: scaleAnimation var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-rotate {
+  animation: rotateAnimation var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-bounce {
+  animation: bounceAnimation var(--animation-duration) var(--animation-easing-bounce) var(--animation-delay) both;
+}
+
+.animate-elastic {
+  animation: elasticAnimation var(--animation-duration) var(--animation-easing-elastic) var(--animation-delay) both;
+}
+
+.animate-matrix {
+  animation: matrixAnimation var(--animation-duration) linear var(--animation-delay) both;
+}
+
+.animate-particle {
+  animation: particleAnimation var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+/* Fade Animations */
+@keyframes fadeAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-fade-down {
+  animation: fadeInDown var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-fade-left {
+  animation: fadeInLeft var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-fade-right {
+  animation: fadeInRight var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide Animations */
+.animate-slide-up {
+  animation: slideInUp var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-slide-down {
+  animation: slideInDown var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-slide-left {
+  animation: slideInLeft var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-slide-right {
+  animation: slideInRight var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Scale Animations */
+.animate-scale-center {
+  animation: scaleIn var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-scale-up {
+  animation: scaleInUp var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+.animate-scale-down {
+  animation: scaleInDown var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleInUp {
+  from {
+    transform: scale(0) translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleInDown {
+  from {
+    transform: scale(0) translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Rotate Animations */
+.animate-rotate-center {
+  animation: rotateIn var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-360deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Bounce Animations */
+.animate-bounce-center {
+  animation: bounceIn var(--animation-duration) var(--animation-easing-bounce) var(--animation-delay) both;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Elastic Animations */
+.animate-elastic-center {
+  animation: elasticIn var(--animation-duration) var(--animation-easing-elastic) var(--animation-delay) both;
+}
+
+@keyframes elasticIn {
+  0% {
+    transform: scale(0) rotate(-360deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(-180deg);
+    opacity: 0.7;
+  }
+  80% {
+    transform: scale(0.8) rotate(-45deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Matrix Effect */
+.animate-matrix-center {
+  animation: matrixGlitch var(--animation-duration) linear var(--animation-delay) both;
+}
+
+@keyframes matrixGlitch {
+  0%, 100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  10% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(-8px, 0px);
+    filter: hue-rotate(180deg);
+  }
+  30% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(270deg);
+  }
+  40% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    transform: translate(4px, 2px);
+    filter: hue-rotate(0deg);
+  }
+  60% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(270deg);
+  }
+  70% {
+    transform: translate(-8px, 0px);
+    filter: hue-rotate(180deg);
+  }
+  80% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  90% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(270deg);
+  }
+}
+
+/* Particle Effect */
+.animate-particle-center {
+  animation: particleExplosion var(--animation-duration) var(--animation-easing) var(--animation-delay) both;
+  position: relative;
+}
+
+.animate-particle-center::before,
+.animate-particle-center::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+@keyframes particleExplosion {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-particle-center::before {
+  animation: particle1 var(--animation-duration) var(--animation-easing) var(--animation-delay);
+}
+
+.animate-particle-center::after {
+  animation: particle2 var(--animation-duration) var(--animation-easing) var(--animation-delay);
+}
+
+@keyframes particle1 {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-150%, -150%) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-250%, -250%) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes particle2 {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(50%, 50%) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(150%, 150%) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Animation Controls */
+.animate-infinite {
+  animation-iteration-count: infinite;
+}
+
+.animate-paused {
+  animation-play-state: paused;
+}
+
+/* Animation Sequence */
+.animation-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.animation-sequence > * {
+  opacity: 0;
+  animation-fill-mode: both;
+}
+
+/* Performance Optimizations */
+.advanced-animation {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .advanced-animation,
+  .animate-fade,
+  .animate-slide,
+  .animate-scale,
+  .animate-rotate,
+  .animate-bounce,
+  .animate-elastic,
+  .animate-matrix,
+  .animate-particle {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+  }
+  
+  .animate-infinite {
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .animate-matrix-center::before,
+  .animate-matrix-center::after,
+  .animate-particle-center::before,
+  .animate-particle-center::after {
+    background: currentColor !important;
+    border: 1px solid currentColor !important;
+  }
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .animate-matrix-center {
+    filter: brightness(0.8);
+  }
+  
+  .animate-particle-center::before,
+  .animate-particle-center::after {
+    background: #fff;
+    box-shadow: 0 0 4px currentColor;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .advanced-animation {
+    --animation-duration: 200ms;
+  }
+  
+  .animate-slide,
+  .animate-bounce,
+  .animate-elastic {
+    --animation-duration: 150ms;
+  }
+  
+  .animate-matrix,
+  .animate-particle {
+    --animation-duration: 100ms;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .advanced-animation[data-trigger="hover"] {
+    animation-trigger: click;
+  }
+}

@@ -1,0 +1,116 @@
+/* Code Chan Theme */
+.code-chan-theme {
+    --code-chan-primary: #9d65c9;     /* Основной фиолетовый цвет */
+    --code-chan-secondary: #f5d6ff;    /* Светло-фиолетовый */
+    --code-chan-accent: #5d3f7c;       /* Темно-фиолетовый */
+    --code-chan-hair: #b490ff;         /* Цвет волос */
+    --code-chan-eyes: #7e57c2;         /* Цвет глаз */
+    --code-chan-skin: #ffeef7;         /* Цвет кожи */
+    --code-chan-outfit: #d4c1f5;       /* Цвет одежды */
+    --code-chan-cyber: #00f7ff;        /* Кибер-элементы */
+}
+
+/* Code Chan Container */
+.code-chan-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    filter: drop-shadow(0 0 10px rgba(157, 101, 201, 0.3));
+}
+
+/* Speech Bubble */
+.speech-bubble {
+    position: absolute;
+    top: -80px;
+    right: 100%;
+    min-width: 200px;
+    max-width: 300px;
+    background: linear-gradient(135deg, var(--code-chan-secondary), white);
+    border: 2px solid var(--code-chan-primary);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--code-chan-primary);
+}
+
+/* Emotions */
+.code-chan-happy .code-chan-eyes {
+    animation: blinkHappy 4s infinite;
+}
+
+.code-chan-thinking .code-chan-head {
+    animation: thinking 3s infinite;
+}
+
+.code-chan-surprised .code-chan-face {
+    animation: surprise 0.3s ease-in-out;
+}
+
+.code-chan-error .code-chan-container {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Cyber Elements */
+.cyber-glow {
+    filter: drop-shadow(0 0 5px var(--code-chan-cyber));
+}
+
+.cyber-circuit {
+    background: linear-gradient(45deg, transparent 25%, var(--code-chan-cyber) 25%, transparent 75%);
+    background-size: 4px 4px;
+}
+
+/* Interactive Elements */
+.code-chan-interactive {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.code-chan-interactive:hover {
+    transform: scale(1.05);
+}
+
+/* Dark Mode Adjustments */
+.dark .code-chan-container {
+    filter: drop-shadow(0 0 15px rgba(157, 101, 201, 0.5));
+}
+
+.dark .speech-bubble {
+    background: linear-gradient(135deg, var(--code-chan-accent), #2d1b3f);
+    border-color: var(--code-chan-primary);
+    color: var(--code-chan-secondary);
+}
+
+/* Animations */
+@keyframes blinkHappy {
+    0%, 95%, 100% { opacity: 1; }
+    97% { opacity: 0; }
+}
+
+@keyframes thinking {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-5deg); }
+}
+
+@keyframes surprise {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}

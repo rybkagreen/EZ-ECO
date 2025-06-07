@@ -11,23 +11,546 @@
     <meta name="author" content="GitHub Codespaces">
     <meta name="generator" content="GitHub Codespaces">
     <meta name="theme-color" content="#000000">
-    <title>{% block title %}{{ title }} | GitHub Codespaces ♥️ Django{% endblock %}</title>
+    <title>{% block title %}{{ title }} | Terminal File Manager - ОБНОВЛЁН!{% endblock %}</title>
     
     <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adaptive-logo.css' %}">
+    <style>
+        body {
+            background: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Тонкий голубой паттерн на фоне */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Фоновый логотип в верхнем левом углу */
+        .background-logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .App {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(20px);
+            padding: 80px 100px;
+            text-align: center;
+            min-width: 500px;
+            position: relative;
+        }
+        
+        /* Тонкий блеск контейнера */
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+                transparent, rgba(96, 165, 250, 0.2), transparent, 
+                rgba(59, 130, 246, 0.1), transparent);
+            background-size: 200% 200%;
+            border-radius: 16px;
+            z-index: -1;
+            animation: containerShimmer 8s ease-in-out infinite;
+        }
+        
+        @keyframes containerShimmer {
+            0%, 100% { 
+                background-position: 0% 0%;
+                opacity: 0.3;
+            }
+            50% { 
+                background-position: 100% 100%;
+                opacity: 0.7;
+            }
+        }
+        
+        .login-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 40px 0;
+            letter-spacing: -0.02em;
+            animation: fadeInDown 0.6s ease-out;
+            background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .login-subtitle {
+            font-size: 1.4rem;
+            color: #64748b;
+            margin: 0 0 60px 0;
+            font-weight: 400;
+            animation: fadeInDown 0.8s ease-out 0.2s both;
+        }
+        
+        /* Вращающийся квадрат для загрузки */
+        .loading-square {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #3b82f6, #60a5fa);
+            border-radius: 6px;
+            margin: 20px auto;
+            animation: rotateSquare 2s linear infinite, pulseBrightness 1.5s ease-in-out infinite alternate;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            position: relative;
+        }
+        
+        .loading-square::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #60a5fa, #93c5fd, #60a5fa);
+            border-radius: 8px;
+            z-index: -1;
+            animation: loadingShimmer 2s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes pulseBrightness {
+            0% { 
+                box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+                transform: scale(1);
+            }
+            100% { 
+                box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes loadingShimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes rotateSquare {
+            0% { 
+                transform: rotate(0deg) scale(1);
+            }
+            25% { 
+                transform: rotate(90deg) scale(1.1);
+            }
+            50% { 
+                transform: rotate(180deg) scale(1);
+            }
+            75% { 
+                transform: rotate(270deg) scale(1.1);
+            }
+            100% { 
+                transform: rotate(360deg) scale(1);
+            }
+        }
+        
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .input-field {
+            padding: 18px 24px;
+            font-size: 1.1rem;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            outline: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* Добавляем тонкий блеск для полей ввода при фокусе */
+        .input-field:focus {
+            animation: inputShimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes inputShimmer {
+            0%, 100% { 
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+            }
+        }
+        
+        .login-button {
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            background-clip: padding-box;
+        }
+        
+        /* Анимация блеска на границах */
+        .login-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                transparent, #60a5fa, transparent, #3b82f6, 
+                transparent, #60a5fa, transparent);
+            background-size: 400% 400%;
+            border-radius: 8px;
+            z-index: -1;
+            animation: shimmer 3s ease-in-out infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .login-button:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+        
+        /* Стили для секции логотипа */
+        .logo-section {
+            background: rgba(248, 250, 252, 0.8);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: fadeInScale 0.6s ease-out 0.1s both;
+        }
+        
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .logo-section:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(248, 250, 252, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+        
+        .header-login-logo {
+            max-width: 120px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            transition: all 0.3s ease;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes logoGlow {
+            0% {
+                filter: brightness(1) drop-shadow(0 0 5px rgba(59, 130, 246, 0.2));
+            }
+            100% {
+                filter: brightness(1.1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
+            }
+        }
+        
+        .logo-section:hover .header-login-logo {
+            transform: scale(1.05);
+        }
+        
+        /* Группа кнопок */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .login-button.primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            order: 1;
+        }
+        
+        .login-button.secondary {
+            background: linear-gradient(135deg, #64748b, #475569);
+            order: 2;
+        }
+        
+        .login-button.secondary::before {
+            background: linear-gradient(45deg, 
+                transparent, #94a3b8, transparent, #64748b, 
+                transparent, #94a3b8, transparent);
+            background-size: 400% 400%;
+        }
+        
+        .login-button.demo {
+            background: linear-gradient(135deg, #059669, #047857);
+            order: 3;
+        }
+        
+        .login-button.demo::before {
+            background: linear-gradient(45deg, 
+                transparent, #34d399, transparent, #059669, 
+                transparent, #34d399, transparent);
+            background-size: 400% 400%;
+        }
+        
+        .login-button.secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(100, 116, 139, 0.3);
+            border-color: rgba(148, 163, 184, 0.5);
+        }
+        
+        .login-button.demo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
+            border-color: rgba(52, 211, 153, 0.5);
+        }
+        
+        /* Стили для формы регистрации */
+        .registration-form {
+            margin-top: 20px;
+        }
+        
+        .form-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0 0 30px 0;
+            text-align: center;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 40px 30px;
+                min-width: 280px;
+                margin: 20px;
+            }
+            
+            .login-title {
+                font-size: 2.5rem;
+            }
+            
+            .login-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .logo-section {
+                padding: 20px;
+            }
+            
+            .header-login-logo {
+                max-width: 80px;
+                max-height: 60px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Фоновый логотип в верхнем левом углу -->
+    <img src="{% static 'images/EZ_Color.svg' %}" class="background-logo company-logo" alt="Company Logo" />
+    
     <div class="App">
-        <header class="App-header">
-            <img src="{% static 'Octocat.png' %}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Django
-            </p>
-            <p class="small">
-                Edit <code>hello_world/templates/index.html</code> and see changes live!
-            </p>
-        </header>
+        <div class="login-container">
+            <!-- Логотип в прямоугольнике над полями ввода -->
+            <div class="logo-section">
+                <img src="{% static 'images/EZ_RGB.svg' %}" class="header-login-logo company-logo" alt="EZ Company Logo" />
+            </div>
+            
+            <h1 class="login-title">Единый Заказчик</h1>
+            <p class="login-subtitle">Система управления заказами и файлами</p>
+            
+            <!-- Форма авторизации -->
+            <form class="auth-form">
+                <input type="text" class="input-field" placeholder="Имя пользователя" required />
+                <input type="password" class="input-field" placeholder="Пароль" required />
+                
+                <div class="button-group">
+                    <button type="submit" class="login-button primary">Войти в систему</button>
+                    <button type="button" class="login-button secondary" onclick="showRegistration()">Регистрация</button>
+                    <button type="button" class="login-button demo" onclick="demoLogin()">Демо-вход</button>
+                </div>
+            </form>
+            
+            <!-- Форма регистрации (скрыта по умолчанию) -->
+            <form class="auth-form registration-form" id="registrationForm" style="display: none;">
+                <h2 class="form-title">Регистрация нового пользователя</h2>
+                <input type="text" class="input-field" placeholder="Имя пользователя" required />
+                <input type="email" class="input-field" placeholder="Email" required />
+                <input type="password" class="input-field" placeholder="Пароль" required />
+                <input type="password" class="input-field" placeholder="Подтвердите пароль" required />
+                
+                <div class="button-group">
+                    <button type="submit" class="login-button primary">Зарегистрироваться</button>
+                    <button type="button" class="login-button secondary" onclick="showLogin()">Назад к входу</button>
+                </div>
+            </form>
+        </div>
     </div>
+    
+    <script>
+        function showRegistration() {
+            document.querySelector('.auth-form:not(#registrationForm)').style.display = 'none';
+            document.getElementById('registrationForm').style.display = 'block';
+        }
+        
+        function showLogin() {
+            document.querySelector('.auth-form:not(#registrationForm)').style.display = 'block';
+            document.getElementById('registrationForm').style.display = 'none';
+        }
+        
+        function demoLogin() {
+            // Демо-вход с предустановленными данными
+            const demoData = {
+                username: 'demo_user',
+                password: 'demo123',
+                features: [
+                    'file_management',
+                    'ai_integration', 
+                    'websocket_chat',
+                    'office_viewer',
+                    'extensions_manager',
+                    'performance_monitor'
+                ]
+            };
+            
+            // Имитация входа в систему
+            console.log('Демо-вход:', demoData);
+            
+            // Показываем загрузку
+            const demoBtn = event.target;
+            const originalText = demoBtn.textContent;
+            demoBtn.textContent = 'Загрузка...';
+            demoBtn.disabled = true;
+            
+            // Имитация задержки загрузки
+            setTimeout(() => {
+                // Переход к React приложению
+                window.location.href = 'http://localhost:3000';
+            }, 2000);
+        }
+        
+        // Обработка обычной формы входа
+        document.querySelector('.auth-form:not(#registrationForm)').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = this.querySelector('input[type="text"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+            
+            if (username && password) {
+                // Переход к React приложению
+                window.location.href = 'http://localhost:3000';
+            }
+        });
+        
+        // Обработка формы регистрации
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputs = this.querySelectorAll('input');
+            const [username, email, password, confirmPassword] = inputs;
+            
+            if (password.value !== confirmPassword.value) {
+                alert('Пароли не совпадают!');
+                return;
+            }
+            
+            if (username.value && email.value && password.value) {
+                alert('Регистрация успешна! Теперь вы можете войти в систему.');
+                showLogin();
+            }
+        });
+    </script>
 </body>
 
 </html>

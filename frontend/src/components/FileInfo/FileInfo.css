@@ -1,0 +1,220 @@
+.file-info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-overlay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.file-info-modal {
+    background: var(--background-card);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    color: var(--text-primary);
+    animation: slideIn 0.3s ease-out;
+    border: 1px solid var(--border-color);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.file-info-header {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    background: var(--background-secondary);
+    border-radius: 16px 16px 0 0;
+}
+
+.file-info-icon {
+    font-size: 48px;
+    margin-right: 16px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.file-info-title {
+    flex: 1;
+}
+
+.file-info-title h3 {
+    margin: 0 0 4px 0;
+    font-size: 20px;
+    font-weight: 600;
+    text-shadow: none;
+    color: var(--text-primary);
+}
+
+.file-info-type {
+    font-size: 14px;
+    opacity: 0.8;
+    background: rgba(113, 128, 150, 0.1);
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+}
+
+.file-info-close {
+    background: rgba(113, 128, 150, 0.1);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-normal);
+    backdrop-filter: blur(10px);
+}
+
+.file-info-close:hover {
+    background: rgba(113, 128, 150, 0.2);
+    color: var(--text-primary);
+    transform: scale(1.05);
+}
+
+.file-info-content {
+    padding: 24px;
+}
+
+.file-info-section {
+    margin-bottom: 24px;
+}
+
+.file-info-section:last-child {
+    margin-bottom: 0;
+}
+
+.file-info-section h4 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.file-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.file-info-row:last-child {
+    border-bottom: none;
+}
+
+.file-info-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    min-width: 80px;
+}
+
+.file-info-value {
+    text-align: right;
+    font-family: 'Consolas', 'Monaco', monospace;
+    background: rgba(113, 128, 150, 0.1);
+    color: var(--text-primary);
+    padding: 4px 8px;
+    border-radius: 8px;
+    word-break: break-all;
+    max-width: 300px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+}
+
+.file-info-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.file-info-action-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-info-action-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.file-info-action-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .file-info-modal {
+        width: 95%;
+        margin: 16px;
+    }
+    
+    .file-info-header {
+        padding: 16px;
+    }
+    
+    .file-info-content {
+        padding: 16px;
+    }
+    
+    .file-info-icon {
+        font-size: 36px;
+        margin-right: 12px;
+    }
+    
+    .file-info-title h3 {
+        font-size: 18px;
+    }
+    
+    .file-info-value {
+        max-width: 200px;
+        font-size: 12px;
+    }
+    
+    .file-info-actions {
+        flex-direction: column;
+    }
+    
+    .file-info-action-btn {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,802 @@
+
+.matrix-login-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-family: 'Courier New', monospace;
+}
+
+/* Canvas для матричного дождя */
+.matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Основной контент */
+.matrix-content {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  width: 90%;
+  color: #00FF00;
+}
+
+/* === ФАЗА ВВЕДЕНИЯ === */
+.matrix-intro {
+  text-align: center;
+  animation: matrixFadeIn 2s ease-out;
+}
+
+@keyframes matrixFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Цифровая сетка лого */
+.matrix-logo {
+  margin-bottom: 3rem;
+}
+
+.digital-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.grid-cell {
+  background: #000;
+  border: 1px solid #00FF00;
+  position: relative;
+  animation: cellPulse 2s ease-in-out infinite;
+}
+
+.grid-cell::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #00FF00;
+  transform: translate(-50%, -50%);
+  animation: dotBlink 1.5s ease-in-out infinite;
+}
+
+.cell-0 { animation-delay: 0s; }
+.cell-1 { animation-delay: 0.2s; }
+.cell-2 { animation-delay: 0.4s; }
+.cell-3 { animation-delay: 0.6s; }
+.cell-4 { animation-delay: 0.8s; }
+.cell-5 { animation-delay: 1s; }
+.cell-6 { animation-delay: 1.2s; }
+.cell-7 { animation-delay: 1.4s; }
+.cell-8 { animation-delay: 1.6s; }
+
+@keyframes cellPulse {
+  0%, 100% {
+    border-color: #00FF00;
+    box-shadow: 0 0 5px #00FF00;
+  }
+  50% {
+    border-color: #00FF88;
+    box-shadow: 0 0 15px #00FF00;
+  }
+}
+
+@keyframes dotBlink {
+  0%, 100% {
+    opacity: 1;
+    background: #00FF00;
+  }
+  50% {
+    opacity: 0.3;
+    background: #00AA00;
+  }
+}
+
+/* Терминальный текст */
+.terminal-text {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.code-line {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  opacity: 0;
+  animation: lineAppear 0.5s ease-out 1s both;
+}
+
+.code-line.delay-1 {
+  animation-delay: 2s;
+}
+
+.code-line.delay-2 {
+  animation-delay: 3s;
+}
+
+.code-line.delay-3 {
+  animation-delay: 4s;
+}
+
+@keyframes lineAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.prompt {
+  color: #00AA00;
+}
+
+.typing {
+  animation: typewriter 2s steps(30) infinite;
+  border-right: 2px solid #00FF00;
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+.status {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status.success {
+  color: #00FF00;
+  text-shadow: 0 0 10px #00FF00;
+}
+
+/* Системная информация */
+.system-info {
+  background: rgba(0, 255, 0, 0.05);
+  border: 1px solid #00AA00;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.info-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.label {
+  color: #00AA00;
+}
+
+.value {
+  color: #00FF00;
+}
+
+.value.green {
+  color: #00FF00;
+  text-shadow: 0 0 5px #00FF00;
+}
+
+/* === ФАЗА ФОРМЫ === */
+.matrix-form {
+  animation: formGlitch 1s ease-out;
+}
+
+@keyframes formGlitch {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  20% {
+    transform: translateX(10px);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.access-panel {
+  background: rgba(0, 255, 0, 0.02);
+  border: 2px solid #00AA00;
+  padding: 2rem;
+  position: relative;
+}
+
+.access-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 255, 0, 0.1) 50%,
+    transparent 100%
+  );
+  animation: panelScan 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes panelScan {
+  0%, 100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.panel-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.terminal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.bracket {
+  color: #00AA00;
+}
+
+.title-text {
+  color: #00FF00;
+  text-shadow: 0 0 10px #00FF00;
+}
+
+.subtitle {
+  color: #00AA00;
+  font-size: 0.9rem;
+}
+
+/* Форма */
+.terminal-form {
+  margin-bottom: 1.5rem;
+}
+
+.input-section {
+  margin-bottom: 1.5rem;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #00AA00;
+  font-size: 0.9rem;
+}
+
+.matrix-input {
+  width: 100%;
+  background: #000;
+  border: 1px solid #00AA00;
+  color: #00FF00;
+  padding: 0.75rem 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.matrix-input:focus {
+  outline: none;
+  border-color: #00FF00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  background: rgba(0, 255, 0, 0.05);
+}
+
+.matrix-input.error {
+  border-color: #FF0000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.matrix-input::placeholder {
+  color: #006600;
+}
+
+/* Ошибка */
+.error-display {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid #FF0000;
+  color: #FF4444;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: errorFlash 0.5s ease-out;
+}
+
+@keyframes errorFlash {
+  0%, 100% {
+    background: rgba(255, 0, 0, 0.1);
+  }
+  50% {
+    background: rgba(255, 0, 0, 0.2);
+  }
+}
+
+.error-symbol {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Кнопки */
+.button-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.access-button, .demo-access-button {
+  padding: 1rem 2rem;
+  background: #000;
+  border: 2px solid #00AA00;
+  color: #00FF00;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.access-button:hover:not(:disabled) {
+  border-color: #00FF00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  background: rgba(0, 255, 0, 0.05);
+}
+
+.access-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.demo-access-button {
+  border-color: #666;
+  color: #888;
+}
+
+.demo-access-button:hover:not(:disabled) {
+  border-color: #00AA00;
+  color: #00AA00;
+}
+
+/* Загрузка */
+.loading-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-bar {
+  width: 20px;
+  height: 3px;
+  background: #00AA00;
+  animation: loadingPulse 1s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+  0%, 100% {
+    background: #00AA00;
+  }
+  50% {
+    background: #00FF00;
+    box-shadow: 0 0 10px #00FF00;
+  }
+}
+
+/* Статус безопасности */
+.security-status {
+  border-top: 1px solid #00AA00;
+  padding-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.status-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.status-label {
+  color: #00AA00;
+}
+
+.status-value {
+  color: #00FF00;
+}
+
+.status-value.green {
+  text-shadow: 0 0 5px #00FF00;
+}
+
+/* === ФАЗА ЗАВЕРШЕНИЯ === */
+.matrix-complete {
+  text-align: center;
+  animation: completeGlow 2s ease-out;
+}
+
+@keyframes completeGlow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.access-granted {
+  margin-bottom: 3rem;
+}
+
+.success-symbol {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 2rem;
+  border: 3px solid #00FF00;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: symbolRotate 3s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+}
+
+.check-matrix {
+  width: 30px;
+  height: 15px;
+  border-left: 4px solid #00FF00;
+  border-bottom: 4px solid #00FF00;
+  transform: rotate(-45deg);
+  animation: checkAppear 1s ease-out 0.5s both;
+}
+
+@keyframes symbolRotate {
+  0%, 100% {
+    transform: rotateY(0deg);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+  }
+  50% {
+    transform: rotateY(180deg);
+    box-shadow: 0 0 50px rgba(0, 255, 0, 0.8);
+  }
+}
+
+@keyframes checkAppear {
+  from {
+    opacity: 0;
+    transform: rotate(-45deg) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-45deg) scale(1);
+  }
+}
+
+.success-text {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px #00FF00;
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px #00FF00;
+  }
+  50% {
+    text-shadow: 0 0 30px #00FF00, 0 0 40px #00FF00;
+  }
+}
+
+.welcome-message {
+  color: #00AA00;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Последовательность загрузки */
+.loading-sequence {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.sequence-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  animation: sequenceAppear 0.5s ease-out;
+}
+
+.sequence-item:nth-child(1) {
+  animation-delay: 1s;
+}
+
+.sequence-item:nth-child(2) {
+  animation-delay: 1.5s;
+}
+
+.sequence-item:nth-child(3) {
+  animation-delay: 2s;
+}
+
+@keyframes sequenceAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sequence-text {
+  color: #00AA00;
+}
+
+.sequence-status {
+  color: #00FF00;
+  font-weight: bold;
+}
+
+.final-prompt {
+  text-align: left;
+  font-size: 1.1rem;
+  animation: finalAppear 1s ease-out 2.5s both;
+}
+
+.typing-final {
+  animation: finalType 2s steps(25) 3s both;
+  border-right: 2px solid #00FF00;
+}
+
+@keyframes finalAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes finalType {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* === СИСТЕМНЫЕ ИНДИКАТОРЫ === */
+.system-indicators {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #00AA00;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: indicatorBlink 2s ease-in-out infinite;
+}
+
+.indicator-dot.green {
+  background: #00FF00;
+  box-shadow: 0 0 5px #00FF00;
+}
+
+.indicator-dot.yellow {
+  background: #FFFF00;
+  box-shadow: 0 0 5px #FFFF00;
+  animation-delay: 0.5s;
+}
+
+.indicator-dot.red {
+  background: #FF0000;
+  box-shadow: 0 0 5px #FF0000;
+  animation-delay: 1s;
+}
+
+@keyframes indicatorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* === УГЛОВЫЕ СИМВОЛЫ === */
+.corner-symbols {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.corner {
+  position: absolute;
+  font-size: 2rem;
+  color: #00AA00;
+  animation: cornerPulse 3s ease-in-out infinite;
+}
+
+.top-left {
+  top: 2rem;
+  left: 2rem;
+}
+
+.top-right {
+  top: 2rem;
+  right: 2rem;
+}
+
+.bottom-left {
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.bottom-right {
+  bottom: 2rem;
+  right: 2rem;
+}
+
+@keyframes cornerPulse {
+  0%, 100% {
+    opacity: 0.5;
+    text-shadow: 0 0 5px #00AA00;
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 15px #00FF00;
+  }
+}
+
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 768px) {
+  .matrix-content {
+    width: 95%;
+    max-width: 400px;
+  }
+
+  .access-panel {
+    padding: 1.5rem;
+  }
+
+  .terminal-title {
+    font-size: 1.2rem;
+  }
+
+  .success-text {
+    font-size: 1.5rem;
+  }
+
+  .corner {
+    font-size: 1.5rem;
+  }
+
+  .corner.top-left,
+  .corner.top-right {
+    top: 1rem;
+  }
+
+  .corner.bottom-left,
+  .corner.bottom-right {
+    bottom: 1rem;
+  }
+
+  .corner.top-left,
+  .corner.bottom-left {
+    left: 1rem;
+  }
+
+  .corner.top-right,
+  .corner.bottom-right {
+    right: 1rem;
+  }
+
+  .system-indicators {
+    top: 1rem;
+    right: 1rem;
+    scale: 0.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .access-panel {
+    padding: 1rem;
+  }
+
+  .digital-grid {
+    width: 80px;
+    height: 80px;
+  }
+
+  .terminal-title {
+    font-size: 1rem;
+  }
+
+  .matrix-input,
+  .access-button,
+  .demo-access-button {
+    font-size: 0.9rem;
+  }
+
+  .button-section {
+    gap: 0.5rem;
+  }
+}

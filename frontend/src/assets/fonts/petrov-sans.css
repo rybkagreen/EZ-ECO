@@ -1,0 +1,54 @@
+/* Petrov Sans Font Family */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap');
+
+/* Fallback font stack for Petrov Sans */
+/* Since Petrov Sans might not be available publicly, we use similar modern sans-serif fonts */
+:root {
+  --font-petrov-sans: 'Petrov Sans', 'Inter', 'Nunito Sans', 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Font weight definitions for Petrov Sans fallback */
+.petrov-sans-light {
+  font-family: var(--font-petrov-sans);
+  font-weight: 300;
+}
+
+.petrov-sans-regular {
+  font-family: var(--font-petrov-sans);
+  font-weight: 400;
+}
+
+.petrov-sans-medium {
+  font-family: var(--font-petrov-sans);
+  font-weight: 500;
+}
+
+.petrov-sans-semibold {
+  font-family: var(--font-petrov-sans);
+  font-weight: 600;
+}
+
+.petrov-sans-bold {
+  font-family: var(--font-petrov-sans);
+  font-weight: 700;
+}
+
+.petrov-sans-extrabold {
+  font-family: var(--font-petrov-sans);
+  font-weight: 800;
+}
+
+.petrov-sans-black {
+  font-family: var(--font-petrov-sans);
+  font-weight: 900;
+}
+
+/* Additional font features for better rendering */
+.petrov-sans {
+  font-family: var(--font-petrov-sans);
+  font-feature-settings: 'liga' 1, 'kern' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
